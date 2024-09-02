@@ -38,13 +38,25 @@ export const BcraData = () => {
           }} 
           aria-label="bcra data">
         
-        <TableHead>
-          <TableRow>
+        <TableHead
+          sx={{
+            '@media (max-width: 600px)': {
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '10px'
+            }
+          }}
+        >
+          <TableRow
+            sx={{
+              display: 'contents', // Se utiliza "contents" para que el grid afecte a las celdas, no a la fila
+            }}
+          >
             <TableCell align="center">Descripción</TableCell>
             <TableCell align="center">Fecha</TableCell>
             <TableCell align="center">Valor</TableCell>
           </TableRow>
-        </TableHead>
+        </TableHead>  
 
         <TableBody>
           {
@@ -54,18 +66,39 @@ export const BcraData = () => {
                 sx={{ 
                   '&:last-child td, &:last-child th': { border: 0 },
                   '@media (max-width: 600px)': {
-                    display: 'block', // Cambiar el diseño de la fila para pantallas pequeñas
-                    marginBottom: '10px', // Añadir margen entre filas en pantallas pequeñas
+                    display: 'grid', // Cambiar el diseño a grid en pantallas pequeñas
+                    gridTemplateColumns: 'repeat(3, 1fr)', // Tres columnas de igual tamaño
+                    gap: '10px', // Espacio entre columnas
+                    marginBottom: '10px',
                   },
                 }}
               >
-                <TableCell component="th" scope="row" sx={{ '@media (max-width: 600px)': { display: 'block', textAlign: 'right', paddingRight: 1 } }}>
+                <TableCell 
+                  component="th" 
+                  scope="row" 
+                  sx={{ 
+                    '@media (max-width: 600px)': {
+                      textAlign: 'left', 
+                    } 
+                  }}>
                   { datos.descripcion }
                 </TableCell>
-                <TableCell align="center" component="th" scope="row" sx={{ '@media (max-width: 600px)': { display: 'block', textAlign: 'right', paddingRight: 1 } }}>
+                <TableCell
+                  align="center" 
+                  sx={{ 
+                    '@media (max-width: 600px)': {
+                      textAlign: 'center', 
+                    } 
+                  }}>
                   { datos.fecha }
                 </TableCell>
-                <TableCell align="center" component="th" scope="row" sx={{ '@media (max-width: 600px)': { display: 'block', textAlign: 'right', paddingRight: 1 } }}>
+                <TableCell
+                  align="center" 
+                  sx={{ 
+                    '@media (max-width: 600px)': {
+                      textAlign: 'center', 
+                    } 
+                  }}>
                   { datos.valor }
                 </TableCell>
               </TableRow>
