@@ -1,29 +1,17 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useFetch } from "./hooks/useFetch";
 
 export const BcraData = () => {
 
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-      const response = await fetch('https://api.bcra.gob.ar/estadisticas/v2.0/principalesvariables')
-      
-      const json = await response.json()
-      const result = json.results
-
-      console.log(json)
-
-
-      setData(result)
-    } catch (e) {
-      throw new Error('Error featching data')
-    }
-  }
-  fetchData()
+  const { data, hasError, isLoading } = useFetch('https://api.bcra.gob.ar/estadisticas/v2.0/principalesvariables')
   
-  }, [])
+  if (isLoading) {
+    return <div>Cargando...</div>;
+  }
+
+  if (hasError) {
+    return <div>Error al cargar los datos</div>;
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -60,7 +48,7 @@ export const BcraData = () => {
 
         <TableBody>
           {
-            data.map((datos, index) => (
+            data.results.map((datos, index) => (
               <TableRow
                 key={index}
                 sx={{ 

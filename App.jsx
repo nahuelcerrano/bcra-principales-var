@@ -15,13 +15,7 @@ export const App = () => {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline>
         <h1 align="center">BCRA - Principales Variables</h1>
-        <div>
-          <BcraData 
-            sx={{
-              padding: 100
-            }}
-          />
-        </div>
+        <BcraData />
       </CssBaseline>
     </ThemeProvider>
   )
