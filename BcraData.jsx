@@ -14,7 +14,7 @@ export const BcraData = () => {
   }
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{maxWidth: '1500px', margin: 'auto', marginBottom: '1rem'}}>
       <Table 
         sx={{ 
             minWidth: 650, 
@@ -96,6 +96,5 @@ export const BcraData = () => {
 
       </Table>
     </TableContainer>
-
   );
 }
